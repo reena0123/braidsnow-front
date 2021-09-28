@@ -7,12 +7,26 @@
 <script>
 import FooterComponent from './components/Layout/Footer'
 import ModelComponent from './components/Layout/Model'
+/*import {UserInfo} from '@/services/userService'
+import User from '@/models/User';*/
 
 export default {
 	name: 'App',
 	components: {
 		FooterComponent,
 		ModelComponent
+	},
+	async mounted(){
+
+		/*await UserInfo()
+		.then(async res => {
+
+			await User.insert({data:res.data.data});
+			
+		}).catch(async () => {
+			
+			await User.deleteAll();
+		});*/
 	},
 }
 </script>

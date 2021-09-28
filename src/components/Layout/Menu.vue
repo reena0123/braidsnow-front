@@ -24,30 +24,34 @@
 				</div>
 				<ul class="main-nav">
 					<li :class="{ active: routeName == 'Home'}">
-						<router-link :to="{name:'Home'}">HOME {{name}}</router-link>
+						<router-link :to="{name:'Home'}">HOME </router-link>
 					</li>
 					<li :class="{ active: routeName == 'BraiderList'}">
-						<router-link :to="{name:'BraiderList'}">Find A Stylist</router-link>
+
+						<router-link :to="{name:'BraiderList'}">Find A Stylist  </router-link>
 					</li>
-					<li :class="{ active: routeName == 'BusinessRegister'}" v-if="loginedUser == ''">
+					<li :class="{ active: routeName == 'BusinessRegister'}" v-if="loginedUser == null">
 						<router-link :to="{name:'BusinessRegister'}">Register My Business</router-link>
 					</li>
-					<li :class="{ active: (routeName == 'Dashboard' || routeName == 'TheraphistDashboard') }" v-if="loginedUser != ''">
-						<router-link :to="{name: loginedUser == 'customer'?'Dashboard':'TheraphistDashboard'}">Dashboard</router-link>
+					<li :class="{ active: (routeName == 'Dashboard' || routeName == 'BraiderDashboard') }" v-else>
+						<router-link :to="{name: loginedUser?.role_id == 2 ?'BraiderDashboard':'Dashboard'}">Dashboard</router-link>
 					</li>
 					
 				</ul>
 			</div>
 			<ul class="nav header-navbar-rht">
 				<li>
-					<router-link :to="{name:loginedUser == ''?'Login':(loginedUser == 'customer'?'Dashboard':'TheraphistDashboard')}" class="login-btn"><i class="fa fa-user login-action"></i>
-					{{loginedUser?'Welcome '+loginedUser:'Login / Signup'}}  </router-link>
+					<router-link :to="{name:loginedUser == ''?'Login':(loginedUser == 'customer'?'Dashboard':'BraiderDashboard')}" class="login-btn"><i class="fa fa-user login-action"></i>
+					{{loginedUser?'Welcome '+loginedUser?.name:'Login / Signup'}}  </router-link>
 				</li>
 			</ul>
 		</nav>
 	</header>
 </template>
 <script>
+
+import User from '@/models/User'
+
 export default {
 	name: 'Menu',
 	computed: {
@@ -55,7 +59,14 @@ export default {
 			return this.$route.name;
 		},
 		loginedUser(){
-			return localStorage.getItem('user');
+
+			const user = User.query().first();
+
+			if (user) {
+				return user;
+			}
+			return null;
+			
 		}
 	}
 }

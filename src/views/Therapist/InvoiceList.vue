@@ -84,11 +84,5 @@
 	export default{
 		name:'InvoiceList',
 		components:{MenuComponent,Sidebar},
-		methods:{
-			onLogout(){
-				localStorage.setItem('user','');
-				this.$router.push({ name: 'Home'});
-			}
-		}
 	}
 </script>

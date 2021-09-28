@@ -1,0 +1,60 @@
+const errObj = {
+	avatar:'',
+	name:'',
+	state:'',
+	city:'',
+	zipcode:'',
+	email:'',
+	businessName:'',
+	websiteLink:'',
+	business_phone_number:'',
+	special_introduction:'',
+	specialIntro:'',
+	policy_procedure:'',
+	booking_deposit_amount:'',
+	couponCode:'',
+	password:'',
+	password_confirmation:'',
+	outOfShop:'',
+	fromHome:'',
+	travelingBraider:'',
+	provideHair:'',
+	washHair:'',
+	service:'',
+	minute:'',
+	hour:'',
+	price:''
+};
+
+const dataObj = {
+	avatar:'',
+	name:'',
+	state:'',
+	city:'',
+	zipcode:'',
+	email:'',
+	businessName:'',
+	websiteLink:'',
+	business_phone_number:'',
+	introduction:'',
+	special_introduction:'',
+	policy_procedure:'',
+	booking_deposit_amount:'',
+	couponCode:'',
+	password:'',
+	password_confirmation:'',
+	outOfShop:1,
+	fromHome:1,
+	travelingBraider:1,
+	provideHair:1,
+	washHair:1,
+	service:'',
+	minute:'',
+	hour:'',
+	price:''
+};
+
+export{
+	errObj,
+	dataObj
+}

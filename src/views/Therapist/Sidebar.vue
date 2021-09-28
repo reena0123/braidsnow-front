@@ -5,10 +5,10 @@
 						<div class="widget-profile pro-widget-content">
 							<div class="profile-info-widget">
 								<a href="#" class="booking-pro-img">
-								<img src="assets/img/theraphist/theraphist-thumb-01.jpg" alt="User Image">
+								<img :src="basePath+user.avatar" :alt="user.name">
 								</a>
 								<div class="profile-det-info">
-									<h3>Ashley Willes</h3>
+									<h3>{{ user.name}} </h3>
 									<div class="customer-details">
 									<h5 class="mb-0">Hair Stylist, Theraphist</h5>
 									</div>
@@ -19,7 +19,7 @@
 							<nav class="dashboard-menu">
 								<ul>
 									<li>
-										<router-link :to="{name:'TheraphistDashboard'}">
+										<router-link :to="{name:'BraiderDashboard'}">
 											<i class="fas fa-columns"></i>
 											<span>Dashboard</span>
 										</router-link>
@@ -88,8 +88,29 @@
 				</div>
 </template>
 <script>
+	import User from '@/models/User'
+	import AssetsPath from '@/utils/AssetsPath'
+
 	export default{
 
-		name:'Sidebar'
+		name:'Sidebar',
+		computed:{
+			user(){
+				const user = User.query().first();
+				
+				return user;
+			},
+			basePath(){
+				return AssetsPath;
+			}
+		},
+		methods:{
+			onLogout(){
+				
+				localStorage.removeItem('api_token');
+				User.deleteAll();
+				this.$router.push({ name: 'Home'});
+			}
+		}
 	}
 </script>
