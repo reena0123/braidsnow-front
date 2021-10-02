@@ -32,18 +32,19 @@
 				<div class="col-md-12 text-right">
 					<div class="owl-nav mynav"></div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4" v-for="service in service" :key="service.id">
 					
 						
 							<div class="item">
 								<div class="services-item">
 									<div class="img-part">
-										<img src="assets/img/services/1.png" class="img-fluid" alt="">
+										<img :src="assetsUrl+service.image" class="img-fluid" 
+										:alt="service.title">
 									</div>
 									<div class="content-part">
 										<div class="content-text">
-											<h3>Butterfly Locs</h3>
-											<h4 class="title">49 Braiders</h4>
+											<h3>{{ service.title }}</h3>
+											<h4 class="title">{{ service.user_services_count}} Braiders</h4>
 										</div>
 									</div>
 									<div class="hover">
@@ -56,128 +57,6 @@
 						
 					
 				</div>
-				<div class="col-md-4">
-					
-						
-							<div class="item">
-								<div class="services-item">
-									<div class="img-part">
-										<img src="assets/img/services/2.png" class="img-fluid" alt="">
-									</div>
-									<div class="content-part">
-										<div class="content-text">
-											<h3>Knotless Braids</h3>
-											<h4 class="title">49 Braiders</h4>
-										</div>
-									</div>
-									<div class="hover">
-										<div class="text booking-btn">
-											<router-link :to="{name:'BraiderList'}">Book Now</router-link>
-										</div>
-									</div>
-								</div>
-							</div>
-						
-					
-				</div>
-				<div class="col-md-4">
-					
-						
-							<div class="item">
-								<div class="services-item">
-									<div class="img-part">
-										<img src="assets/img/services/3.png" class="img-fluid" alt="">
-									</div>
-									<div class="content-part">
-										<div class="content-text">
-											<h3>Fulani Braids</h3>
-											<h4 class="title">49 Braiders</h4>
-										</div>
-									</div>
-									<div class="hover">
-										<div class="text booking-btn">
-											<router-link :to="{name:'BraiderList'}">Book Now</router-link>
-										</div>
-									</div>
-								</div>
-							</div>
-						
-					
-				</div>
-				<div class="col-md-4">
-					
-						
-							<div class="item">
-								<div class="services-item">
-									<div class="img-part">
-										<img src="assets/img/services/4.png" class="img-fluid" alt="">
-									</div>
-									<div class="content-part">
-										<div class="content-text">
-											<h3>Stitch Braids</h3>
-											<h4 class="title">49 Braiders</h4>
-										</div>
-									</div>
-									<div class="hover">
-										<div class="text booking-btn">
-											<router-link :to="{name:'BraiderList'}">Book Now</router-link>
-										</div>
-									</div>
-								</div>
-							</div>
-						
-					
-				</div>
-				<div class="col-md-4">
-					
-						
-							<div class="item">
-								<div class="services-item">
-									<div class="img-part">
-										<img src="assets/img/services/5.png" class="img-fluid" alt="">
-									</div>
-									<div class="content-part">
-										<div class="content-text">
-											<h3>Feed-In Braids</h3>
-											<h4 class="title">49 Braiders</h4>
-										</div>
-									</div>
-									<div class="hover">
-										<div class="text booking-btn">
-											<router-link :to="{name:'BraiderList'}">Book Now</router-link>
-										</div>
-									</div>
-								</div>
-							</div>
-						
-					
-				</div>
-				<div class="col-md-4">
-					
-						
-							<div class="item">
-								<div class="services-item">
-									<div class="img-part">
-										<img src="assets/img/services/6.png" class="img-fluid" alt="">
-									</div>
-									<div class="content-part">
-										<div class="content-text">
-											<h3>Lemonade Braids</h3>
-											<h4 class="title">49 Braiders</h4>
-										</div>
-									</div>
-									<div class="hover">
-										<div class="text booking-btn">
-											<router-link :to="{name:'BraiderList'}">Book Now</router-link>
-										</div>
-									</div>
-								</div>
-							</div>
-						
-					
-				</div>
-				
-				
 			</div>
 			<div class="row">
 				<div class="col-12">
@@ -189,30 +68,34 @@
 		</div>
 	</section>
 	<section class="section theraphist">
-<div class="container">
-<div class="row">
-<div class="col-md-7 col-sm-12 col-12 mx-auto">
-<div class="section-header text-center">
-<img width="59" height="44" alt="Logo" src="assets/img/icon.png">
-<h2 class="header-title" style="font-family:Arial,sans-serif !important;">TOP RATED BRAIDER</h2>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7 col-sm-12 col-12 mx-auto">
+					<div class="section-header text-center">
+						<img width="59" height="44" alt="Logo" src="assets/img/icon.png">
+							<h2 class="header-title" style="font-family:Arial,sans-serif !important;">TOP RATED BRAIDER</h2>
 <p class="header-subtitle">You can choose the various type of massage you want from kinds of massages our team has expertise in!</p>
 </div>
 </div>
 </div>
 
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-3" v-for="braider in topBraiders" :key="braider.id">
 					
 						
 							<div class="item">
 <div class="theraphist-item">
 <div class="img-part">
-<a href="theraphist-profile.html"><img src="assets/img/theraphist/team-4.png" class="img-fluid" alt="Theraphist Team"></a>
+<a href="theraphist-profile.html">
+	<img :src="assetsUrl+braider.avatar" class="img-fluid" :alt="braider.name"></a>
 </div>
 <div class="profile-info">
-<h3><a href="theraphist-profile.html">Katharine Berthold</a></h3>
-<h4 class="title">Hair Stylist, Theraphist</h4>
-<div class="rating"><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star non-checked"></i><i class="fa fa-star non-checked"></i></div>
+<h3><a href="">{{ braider.name }}</a></h3>
+<h4 class="title">{{ (braider.user_services.map(service => service.service)) }}</h4>
+<div class="rating">
+	<i class="fa fa-star checked" v-for="i in braider.ratting" :key="i"></i>
+	<i class="fa fa-star non-checked" v-for="j in 5 - braider.ratting" :key="j"></i>
+</div>
 </div>
 <div class="profile-detail">
 
@@ -225,78 +108,8 @@
 						
 					
 				</div>
-				<div class="col-md-3">
-					
-						
-							<div class="item">
-<div class="theraphist-item">
-<div class="img-part">
-<a href="theraphist-profile.html"><img src="assets/img/theraphist/team-4.png" class="img-fluid" alt="Theraphist Team"></a>
-</div>
-<div class="profile-info">
-<h3><a href="theraphist-profile.html">Katharine Berthold</a></h3>
-<h4 class="title">Hair Stylist, Theraphist</h4>
-<div class="rating"><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star non-checked"></i><i class="fa fa-star non-checked"></i></div>
-</div>
-<div class="profile-detail">
-
-</div>
-<div class="see-all  text-center">
-<router-link :to="{name:'Profile'}" class="btn btn-primary booking-btn">BOOK NOW</router-link>
-</div>
-</div>
-</div>
-						
-					
-				</div>
-				<div class="col-md-3">
-					
-						
-							<div class="item">
-<div class="theraphist-item">
-<div class="img-part">
-<a href="theraphist-profile.html"><img src="assets/img/theraphist/team-4.png" class="img-fluid" alt="Theraphist Team"></a>
-</div>
-<div class="profile-info">
-<h3><a href="theraphist-profile.html">Katharine Berthold</a></h3>
-<h4 class="title">Hair Stylist, Theraphist</h4>
-<div class="rating"><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star non-checked"></i><i class="fa fa-star non-checked"></i></div>
-</div>
-<div class="profile-detail">
-
-</div>
-<div class="see-all  text-center">
-<router-link :to="{name:'Profile'}" class="btn btn-primary booking-btn">BOOK NOW</router-link>
-</div>
-</div>
-</div>
-						
-					
-				</div>
-				<div class="col-md-3">
-					
-						
-							<div class="item">
-<div class="theraphist-item">
-<div class="img-part">
-<a href="theraphist-profile.html"><img src="assets/img/theraphist/team-4.png" class="img-fluid" alt="Theraphist Team"></a>
-</div>
-<div class="profile-info">
-<h3><a href="theraphist-profile.html">Katharine Berthold</a></h3>
-<h4 class="title">Hair Stylist, Theraphist</h4>
-<div class="rating"><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star checked"></i><i class="fa fa-star non-checked"></i><i class="fa fa-star non-checked"></i></div>
-</div>
-<div class="profile-detail">
-
-</div>
-<div class="see-all  text-center">
-<router-link :to="{name:'Profile'}" class="btn btn-primary booking-btn">BOOK NOW</router-link>
-</div>
-</div>
-</div>
-						
-					
-				</div>
+			
+				
 				
 <div class="col-12" style="margin-top: 20px;">
 <div class="see-all  text-center">
@@ -375,9 +188,30 @@
 
 <script>
 import MenuComponent from '../components/Layout/Menu'
+import { getTopBraider, getService } from '@/services/homepage'
+
+import AssetsPath from '@/utils/AssetsPath'
 export default {
 	name: 'Home',
-	components:{MenuComponent}
+	components:{MenuComponent},
+	data(){
+		return {
+			topBraiders:[],
+			assetsUrl:'',
+			service:[],
+		}
+	},
+	mounted(){
+		
+		this.assetsUrl = AssetsPath;
+
+		getTopBraider().then(res => this.topBraiders = res.data.data)
+		.catch(err => console.log(err))
+
+		getService().then(res => this.service = res.data.data)
+		.catch(err => console.log(err))
+
+	},
 }
 </script>
 <style scoped>

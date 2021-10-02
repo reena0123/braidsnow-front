@@ -1,5 +1,6 @@
 import { Model } from '@vuex-orm/core'
 import UserService from './UserService'
+import Portfolio from './Portfolio'
 
 export default class User extends Model {
 
@@ -11,14 +12,20 @@ export default class User extends Model {
 			id: this.attr(null),
 			role_id: this.attr(null),
 			name: this.attr(''),
+			top_braiders: this.attr(null),
 			email: this.attr(''),
+			dob: this.attr(''),
 			avatar: this.attr(''),
+			ratting: this.attr(null),
+			address: this.attr(''),
 			state: this.attr(''),
 			city: this.attr(''),
 			zipcode: this.attr(''),
+			country: this.attr(''),
 			business_name: this.attr(''),
 			website_link: this.attr(''),
 			business_phone_number: this.attr(''),
+			phone_number: this.attr(''),
 			introduction: this.attr(''),
 			special_introduction: this.attr(''),
 			policy_procedure: this.attr(''),
@@ -33,7 +40,8 @@ export default class User extends Model {
 			api_token: this.attr(''),
 			created_at: this.attr(''),
 			updated_at: this.attr(''),
-			user_services: this.hasMany(UserService, 'user_id')
+			user_services: this.hasMany(UserService, 'user_id'),
+			portfolio: this.hasMany(Portfolio, 'braider_id')
 		}
 	}
 }

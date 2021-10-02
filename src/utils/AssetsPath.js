@@ -1,1 +1,1 @@
-export default "https://blmpdev.com/braidsnowAPI/public/storage/";
+export default "http://localhost:8000/storage/";

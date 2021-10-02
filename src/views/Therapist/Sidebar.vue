@@ -38,6 +38,12 @@
 										</router-link>
 									</li>
 									<li>
+										<router-link :to="{name:'Portfolio'}">						
+										<i class="fas fa-blog"></i>
+										<span>PortFolio</span>
+										</router-link>
+									</li>
+									<li>
 										<router-link :to="{name:'ScheduleTiming'}">
 										<i class="fas fa-hourglass-start"></i>
 										<span>Schedule Timings</span>

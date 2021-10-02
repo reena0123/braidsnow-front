@@ -31,6 +31,7 @@ const Reviews = () => import("@/views/Therapist/Reviews");
 const TheraphistProfileSetting = () => import("@/views/Therapist/TheraphistProfileSetting");
 const SocialMedia = () => import("@/views/Therapist/SocialMedia");
 const TheraphistChangePassword = () => import("@/views/Therapist/TheraphistChangePassword");
+const Portfolio = () => import("@/views/Therapist/Portfolio");
 
 const routes = [{
 	path: "/",
@@ -104,10 +105,6 @@ const routes = [{
 	path: "/profile",
 	name: "Profile",
 	component: Profile,
-	meta: {
-		requiresAuth: true,
-		is_customer : true
-	}
 },
 {
 	path: "/booking",
@@ -251,6 +248,17 @@ const routes = [{
 	}
 },
 
+
+{
+	path: "/portfolio",
+	name: "Portfolio",
+	component: Portfolio,
+	meta: {
+		requiresAuth: true,
+		is_braider : true
+	}
+},
+
 ];
 
 
@@ -263,8 +271,9 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
 	
 	const user = User.query().first();
-	if (user == null && localStorage.getItem('api_token') != null) {
 
+	if (user == null && localStorage.getItem('api_token') != null) {
+		console.log(user,localStorage.getItem('api_token'));
 		await UserInfo()
 			.then(async res => {
 

@@ -139,6 +139,9 @@
 <script>
 	import MenuComponent from '../../components/Layout/Menu'
 	import Sidebar from './Sidebar'
+	import { customer } from '@/services/MyCustomer'
+
+	import AssetsPath from '@/utils/AssetsPath'
 	export default{
 		name:'MyCustomer',
 		components:{MenuComponent,Sidebar},
