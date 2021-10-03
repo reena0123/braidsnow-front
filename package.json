@@ -11,6 +11,7 @@
     "@vuex-orm/core": "^0.36.4",
     "axios": "^0.21.4",
     "core-js": "^3.6.5",
+    "moment": "^2.29.1",
     "sweetalert2": "^11.1.7",
     "vue": "^3.2.7",
     "vue-owl-carousel": "^2.0.3",

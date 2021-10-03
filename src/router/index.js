@@ -22,16 +22,16 @@ const Dashboard = () => import("@/views/Customer/CustomerDashboard");
 const Favourite = () => import("@/views/Customer/Favourite");
 const ProfileSetting = () => import("@/views/Customer/ProfileSetting");
 const ChangePassword = () => import("@/views/Customer/ChangePassword");
-const BraiderDashboard = () => import("@/views/Therapist/BraiderDashboard");
-const Appointments = () => import("@/views/Therapist/Appointments");
-const MyCustomer = () => import("@/views/Therapist/MyCustomer");
-const ScheduleTiming = () => import("@/views/Therapist/ScheduleTiming");
-const InvoiceList = () => import("@/views/Therapist/InvoiceList");
-const Reviews = () => import("@/views/Therapist/Reviews");
-const TheraphistProfileSetting = () => import("@/views/Therapist/TheraphistProfileSetting");
-const SocialMedia = () => import("@/views/Therapist/SocialMedia");
-const TheraphistChangePassword = () => import("@/views/Therapist/TheraphistChangePassword");
-const Portfolio = () => import("@/views/Therapist/Portfolio");
+const BraiderDashboard = () => import("@/views/Braider/BraiderDashboard");
+const Appointments = () => import("@/views/Braider/Appointments");
+const MyCustomer = () => import("@/views/Braider/MyCustomer");
+const ScheduleTiming = () => import("@/views/Braider/ScheduleTiming");
+const InvoiceList = () => import("@/views/Braider/InvoiceList");
+const Reviews = () => import("@/views/Braider/Reviews");
+const BraiderProfile = () => import("@/views/Braider/Profile");
+const SocialMedia = () => import("@/views/Braider/SocialMedia");
+const BraiderChangePassword = () => import("@/views/Braider/ChangePassword");
+const Portfolio = () => import("@/views/Braider/Portfolio");
 
 const routes = [{
 	path: "/",
@@ -221,9 +221,9 @@ const routes = [{
 	}
 },
 {
-	path: "/theraphist-profile-setting",
-	name: "TheraphistProfileSetting",
-	component: TheraphistProfileSetting,
+	path: "/braider-profile",
+	name: "BraiderProfile",
+	component: BraiderProfile,
 	meta: {
 		requiresAuth: true,
 		is_braider : true
@@ -240,8 +240,8 @@ const routes = [{
 },
 {
 	path: "/braider/change-password",
-	name: "TheraphistChangePassword",
-	component: TheraphistChangePassword,
+	name: "BraiderChangePassword",
+	component: BraiderChangePassword,
 	meta: {
 		requiresAuth: true,
 		is_braider : true
@@ -271,10 +271,11 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
 	
 	const user = User.query().first();
+	const token = localStorage.getItem('api_token');
 
-	if (user == null && localStorage.getItem('api_token') != null) {
-		console.log(user,localStorage.getItem('api_token'));
-		await UserInfo()
+	if (user == null && token != null) {
+		
+		await UserInfo(token)
 			.then(async res => {
 
 				await User.insert({data:res.data.data});

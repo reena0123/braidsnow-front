@@ -1,15 +1,19 @@
 import axios from 'axios';
 import BaseUrl from './BaseUrl';
 
-console.log(localStorage.getItem('api_token'));
-const AuthHeader = {
-	'Content-Type': 'application/json',
-	'Accept': 'application/json',
-	'Authorization': `Bearer ${localStorage.getItem('api_token')}`
-};
+const AxiosConfig = token => {
 
-export default axios.create({
-	baseURL: `${BaseUrl}api/braider/`,
-	headers: AuthHeader
-});
+	const AuthHeader = {
+		'Content-Type': 'application/json',
+		'Accept': 'application/json',
+		'Authorization': `Bearer ${token}`
+	};
 
+	return axios.create({
+		baseURL: `${BaseUrl}api/braider/`,
+		headers: AuthHeader
+	});
+}
+
+
+export default AxiosConfig

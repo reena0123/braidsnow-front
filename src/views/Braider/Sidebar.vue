@@ -5,7 +5,8 @@
 						<div class="widget-profile pro-widget-content">
 							<div class="profile-info-widget">
 								<a href="#" class="booking-pro-img">
-								<img :src="basePath+user.avatar" :alt="user.name">
+								<img :src="user.avatar?basePath+user.avatar:previewImage" :alt="user.name">
+								
 								</a>
 								<div class="profile-det-info">
 									<h3>{{ user.name}} </h3>
@@ -63,7 +64,7 @@
 									</li>
 									
 									<li>
-										<router-link :to="{name:'TheraphistProfileSetting'}">
+										<router-link :to="{name:'BraiderProfile'}">
 										<i class="fas fa-user-cog"></i>
 										<span>Profile Settings</span>
 										</router-link>
@@ -75,7 +76,7 @@
 										</router-link>
 									</li>
 									<li>
-										<router-link :to="{name:'TheraphistChangePassword'}">
+										<router-link :to="{name:'BraiderChangePassword'}">
 										<i class="fas fa-lock"></i>
 										<span>Change Password</span>
 										</router-link>
@@ -100,6 +101,12 @@
 	export default{
 
 		name:'Sidebar',
+		data(){
+			return {
+				
+				previewImage: 'assets/img/theraphist/theraphist-thumb-01.png'
+			}
+		},
 		computed:{
 			user(){
 				const user = User.query().first();

@@ -1,10 +1,8 @@
 import { Model } from '@vuex-orm/core'
-import UserService from './UserService'
-import Portfolio from './Portfolio'
 
-export default class User extends Model {
+export default class Customer extends Model {
 
-	static entity = 'users'
+	static entity = 'customer'
 
 	static fields () {
 		
@@ -16,7 +14,6 @@ export default class User extends Model {
 			email: this.attr(''),
 			dob: this.attr(''),
 			avatar: this.attr(''),
-			gender: this.attr(''),
 			ratting: this.attr(null),
 			address: this.attr(''),
 			state: this.attr(''),
@@ -38,11 +35,10 @@ export default class User extends Model {
 			can_you_provide_hair: this.attr(false),
 			do_you_wash_hair: this.attr(false),
 			status: this.attr(false),
+			gender: this.attr(""),
 			api_token: this.attr(''),
 			created_at: this.attr(''),
-			updated_at: this.attr(''),
-			user_services: this.hasMany(UserService, 'user_id'),
-			portfolio: this.hasMany(Portfolio, 'braider_id')
+			updated_at: this.attr('')
 		}
 	}
 }

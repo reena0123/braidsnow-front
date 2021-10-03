@@ -76,10 +76,11 @@
 	import MenuComponent from '../../components/Layout/Menu'
 	import Sidebar from './Sidebar'
 	import {ChangePassword} from '@/services/userService'
+	import User from '@/models/User'
 	import Swal from 'sweetalert2'
 
 	export default{
-		name:'TheraphistChangePassword',
+		name:'ChangePassword',
 		components:{MenuComponent,Sidebar},
 		data(){
 			
@@ -92,12 +93,21 @@
 				errConfirmPassword:''
 			};
 		},
+
+		computed:{
+			
+			token(){
+				const user = User.query().first();
+				return user.api_token;
+			},
+			
+		},
 		methods:{
 			onSubmit(){
 
 				this.clear();
 
-				ChangePassword({
+				ChangePassword(this.token,{
 					old_password: this.oldPassword,
 					password: this.newPassword,
 					password_confirmation: this.confirmPassword

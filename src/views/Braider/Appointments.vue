@@ -108,4 +108,5 @@
 		name:'Appointments',
 		components:{MenuComponent,Sidebar},
 	}
+	
 </script>

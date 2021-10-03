@@ -15,10 +15,12 @@ import Service from '@/models/Service'
 import SocialMedia from '@/models/SocialMedia'
 import WorkingDay from '@/models/WorkingDay'
 import Portfolio from '@/models/Portfolio'
+import Customer from '@/models/Customer'
  
 const database = new VuexORM.Database()
 
 database.register(User)
+database.register(Customer)
 database.register(UserService)
 database.register(Appointment)
 database.register(AppointmentBookedService)

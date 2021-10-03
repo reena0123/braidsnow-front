@@ -6,4 +6,4 @@ import axios from '@/utils/braiders';
 | get customers
 |-------------------------------------------------------------------------------
 */
-export const customer = async() => await axios.get(`customer/index`);
+export const customer = async token => await axios(token).get(`customer/index`);

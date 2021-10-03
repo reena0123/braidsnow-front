@@ -74,7 +74,6 @@
 					password: this.password
 				}).then(async res => {
 
-					console.log(res.data);
 					await User.insert({data: res.data.user});
 					
 					await localStorage.setItem('api_token',res.data.token);

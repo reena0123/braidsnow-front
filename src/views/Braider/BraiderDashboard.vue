@@ -248,60 +248,84 @@
 			user(){
 				return User.query().first();
 			},
+			token(){
+				const user = User.query().first();
+				return user.api_token;
+			},
 			basePath(){
 				return AssetsPath;
 			}
 		},
-		beforeMount(){
+		async mounted(){
 			
-			getAllAppointment()
-			.then(res => {
-				this.appointments = res.data.data
-			})
-			.catch(() => {
-				this.$router.push({name:'home'});
-			});
-
-			todayAppointment()
-			.then(res => {
-				this.todayAppointments = res.data.data
-			})
-			.catch(() => {
-				this.$router.push({name:'home'});
-			});
+			await this.allAppointment();
+			await this.getTotalCustomer();
+			await this.getTodayAppointment();
+			await this.upcomingAppointment();
+			await this.getNewCustomer();
+			await this.getTotalAppointment();
 			
-			upcomingAppointment()
-			.then(res => {
-				this.upcomingAppointments = res.data.data
-			})
-			.catch(() => {
-				this.$router.push({name:'home'});
-			});
-
-			totalCustomer()
-			.then(res => {
-				this.totalCustomers = res.data.data
-			})
-			.catch(() => {
-				this.$router.push({name:'home'});
-			});
-
-			newCustomer()
-			.then(res => {
-				this.newCustomer = res.data.data
-			})
-			.catch(() => {
-				this.$router.push({name:'home'});
-			});
-
-			totalAppointment()
-			.then(res => {
-				this.totalAppointments = res.data.data
-			})
-			.catch(() => {
-				this.$router.push({name:'home'});
-			});
-
 		},
+		methods:{
+
+			async allAppointment(){
+
+				await getAllAppointment(this.token)
+				.then(async res => {
+					this.appointments = await res.data.data
+				})
+			},
+			async getTotalCustomer(){
+				
+				await totalCustomer(this.token)
+				.then(async res => {
+
+					this.totalCustomers = await res.data.data
+				})
+				.catch(() => {
+					this.$router.push({name:'home'});
+				});
+			},
+			async getTodayAppointment(){
+
+				await todayAppointment(this.token)
+				.then(async res => {
+					this.todayAppointments = await res.data.data
+				})
+				.catch(() => {
+					this.$router.push({name:'home'});
+				});
+			},
+			async upcomingAppointment(){
+
+				await upcomingAppointment(this.token)
+				.then(async res => {
+					this.upcomingAppointments = await res.data.data
+				})
+				.catch(() => {
+					this.$router.push({name:'home'});
+				});
+			},
+			async getNewCustomer(){
+				
+				await newCustomer(this.token)
+				.then(async res => {
+					this.newCustomer = await res.data.data
+				})
+				.catch(() => {
+					this.$router.push({name:'home'});
+				});
+			},
+			async getTotalAppointment(){
+				
+				await totalAppointment(this.token)
+				.then(async res => {
+					this.totalAppointments = await res.data.data
+				})
+				.catch(() => {
+					this.$router.push({name:'home'});
+				});
+			}
+		}
 	}
 </script>

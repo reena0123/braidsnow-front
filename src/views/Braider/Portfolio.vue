@@ -78,6 +78,7 @@
 	import Sidebar from './Sidebar'
 	import {storePortfolio, getPortfolio} from '@/services/portfolio'
 	import Portfolio from '@/models/Portfolio'
+	import User from '@/models/User'
 	import AssetsPath from '@/utils/AssetsPath'
 	import Swal from 'sweetalert2'
 	
@@ -98,6 +99,12 @@
 		}
 
 		},
+		computed:{
+			token(){
+				const user = User.query().first();
+				return user.api_token;
+			}
+		},
 
 		async mounted(){
 			
@@ -107,8 +114,28 @@
 
 			async getPortfolioData(){
 				this.assetsUrl = AssetsPath;
-				await getPortfolio().then(async res =>this.getPortfolio = await res.data.data)
-				.catch(err => console.log(err))
+				console.log(Portfolio.exists())
+				if (Portfolio.exists()) {
+
+					this.getPortfolio = Portfolio.query().all();
+
+					getPortfolio(this.token)
+					.then( res =>{
+						this.getPortfolio =  res.data.data
+						Portfolio.deleteAll()
+						Portfolio.insert({data:res.data.data})
+					})
+
+				}else{
+
+					await getPortfolio(this.token)
+					.then(async res =>{
+						this.getPortfolio = await res.data.data
+						Portfolio.insert({data:res.data.data})
+					})
+					.catch(err => console.log(err))
+				}
+				
 			},
 			onUploadPortfolio(event){
 
@@ -135,7 +162,7 @@
 				this.loading = true;
 				await this.clear();
 
-				await storePortfolio(this.props())
+				await storePortfolio(this.token,this.props())
 				.then(async res => {
 
 					await this.getPortfolioData();
